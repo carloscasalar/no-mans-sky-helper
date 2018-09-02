@@ -2,15 +2,9 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5">
-        <blockquote>
-          &#8220;First, solve the problem. Then, write the code.&#8221;
-          <footer>
-            <small>
-              <em>&mdash;John Johnson</em>
-            </small>
-          </footer>
-        </blockquote>
+        <h1>No Man's Sky Helper</h1>
+        <img src="@/assets/logo.png" alt="Vuetify.js" class="logo mb-5">
+        <p>This is a simple helper for bookkeeping solar systems, planets and resources.</p>
       </v-layout>
     </v-slide-y-transition>
   </v-container>
@@ -31,5 +25,8 @@ li {
 }
 a {
   color: #42b983;
+}
+img.logo{
+  height: 100px;
 }
 </style>
