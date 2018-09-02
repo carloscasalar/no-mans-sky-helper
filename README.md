@@ -31,3 +31,6 @@ npm run test:unit
 ```
 npm run test:e2e
 ```
+
+## Sources and acknowledges
+I'm using resource list from [gamepedia wiki](https://nomanssky.gamepedia.com/Resource#Resource_Deposits)
