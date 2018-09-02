@@ -14,6 +14,7 @@
           value="true"
           v-for="(item, i) in items"
           :key="i"
+          @click="goToState(item.state)"
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -66,15 +67,22 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+      'disable-route-watcher': true,
       items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire',
+        icon: 'more',
+        title: 'About',
+        state: 'about',
       }],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'No Man\'s Sky Helper',
     };
+  },
+  methods: {
+    goToState(stateName) {
+      this.$router.push(stateName);
+    },
   },
 };
 </script>
