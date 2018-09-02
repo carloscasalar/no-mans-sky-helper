@@ -1,6 +1,6 @@
 {
-  "name": "no-mans-sky-helper-vuetify",
-  "short_name": "no-mans-sky-helper-vuetify",
+  "name": "no-mans-sky-helper",
+  "short_name": "No Man's Sky helper",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
