@@ -29,6 +29,7 @@
       :clipped-left="clipped"
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <img src="@/assets/logo.png" class="logo">
       <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
     <v-content>
@@ -72,8 +73,15 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'NMS Helper',
+      title: 'No Man\'s Sky Helper',
     };
   },
 };
 </script>
+
+<style scoped>
+img.logo {
+  height: 30px;
+}
+
+</style>
