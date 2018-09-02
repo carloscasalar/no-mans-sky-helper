@@ -69,6 +69,11 @@ export default {
       fixed: false,
       'disable-route-watcher': true,
       items: [{
+        icon: 'scatter_plot',
+        title: 'Materials',
+        state: 'materials',
+      },
+      {
         icon: 'more',
         title: 'About',
         state: 'about',
