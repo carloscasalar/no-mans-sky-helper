@@ -1,21 +1,60 @@
 <template>
-  <v-layout column align-center>
-    <h1>Materials</h1>
-    <div class="text-xs-center" v-if="loading">
-      <v-progress-circular
-        indeterminate
-        color="primary"
-      ></v-progress-circular>
-    </div>
+  <v-layout>
 
-    <div v-if="error" class="error">
+    <v-layout column align-center v-if="loading">
+      <div class="text-xs-center">
+        <v-progress-circular
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+      </div>
+    </v-layout>
+
+    <v-layout v-if="error" class="error">
       {{ error }}
-    </div>
+    </v-layout>
 
-    <div v-if="materials" class="content">
+    <v-layout row v-if="materials">
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card>
+          <v-toolbar color="cyan" dark>
+            <v-toolbar-title>Materials</v-toolbar-title>
 
-      <p>{{ materials.length }}</p>
-    </div>
+            <v-spacer></v-spacer>
+
+            <v-btn icon>
+              <v-icon>search</v-icon>
+            </v-btn>
+          </v-toolbar>
+
+          <v-list two-line>
+            <v-list-tile
+              v-for="material in materials"
+              :key="material.id"
+              avatar
+            >
+              <v-list-tile-avatar>
+                <v-avatar color="cyan">{{material.abbreviation}}</v-avatar>
+              </v-list-tile-avatar>
+
+              <v-list-tile-content>
+                <v-list-tile-title>{{ material.name }}</v-list-tile-title>
+                <v-list-tile-sub-title v-if="material.composed">
+                  Made of: {{ material.composition }}
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
+
+              <v-list-tile-action>
+                <v-btn icon ripple>
+                  <v-icon color="grey lighten-1">info</v-icon>
+                </v-btn>
+              </v-list-tile-action>
+
+            </v-list-tile>
+          </v-list>
+        </v-card>
+      </v-flex>
+    </v-layout>
 
   </v-layout>
 </template>
