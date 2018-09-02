@@ -1,4 +1,6 @@
-# no-mans-sky-helper-vuetify
+# no-mans-sky-helper
+
+This is a simple helper for bookkeeping solar systems, planets and resources.
 
 ## Project setup
 ```
