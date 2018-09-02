@@ -2,14 +2,16 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <h1>Materials</h1>
+        <material-list></material-list>
       </v-layout>
     </v-slide-y-transition>
   </v-container>
 </template>
 
-<style scoped>
-  h1 {
-    font-weight: normal;
-  }
-</style>
+<script>
+import MaterialList from '../components/materials/MaterialList.vue';
+
+export default {
+  components: { MaterialList },
+};
+</script>
