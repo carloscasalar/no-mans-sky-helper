@@ -8,3 +8,9 @@
 *.njsproj
 *.sln
 *.sw*
+
+# File for local notes
+notes.txt
+
+# composer ignored files and folder
+composer-home
