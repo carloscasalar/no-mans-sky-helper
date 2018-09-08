@@ -12,5 +12,6 @@
 # File for local notes
 notes.txt
 
-# composer ignored files and folder
+# local cache ignored files and folder
 composer-home
+docker-files
