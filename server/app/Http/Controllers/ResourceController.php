@@ -2,47 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\ResourceRepositoryInterface;
+
 class ResourceController extends Controller
 {
-  private $resources;
+  private $repository;
 
-  public function __construct()
+  public function __construct(ResourceRepositoryInterface $resourceRepository)
   {
-    $this->resources = $this->getResources();
+    $this->repository = $resourceRepository;
   }
 
   public function index()
   {
-    return response()->json($this->resources);
-  }
-
-  private function getResources(): array
-  {
-    return [
-      [
-        '_id' => 'cu',
-        'name' => 'Copper',
-        'abbreviation' => 'Cu',
-        'madeOf' => []
-      ],
-      [
-        '_id' => 'c',
-        'name' => 'Carbon',
-        'abbreviation' => 'C',
-        'madeOf' => []
-      ],
-      [
-        '_id' => 'fe',
-        'name' => 'Ferrite dust',
-        'abbreviation' => 'Fe',
-        'madeOf' => []
-      ],
-      [
-        '_id' => 'fe+',
-        'name' => 'Pure ferrite',
-        'abbreviation' => 'Fe+',
-        'madeOf' => ['fe']
-      ]
-    ];
+    return response()->json($this->repository->getAllResources());
   }
 }
