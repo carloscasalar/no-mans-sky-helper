@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\RepositoryServiceProvider;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 try {
@@ -78,6 +80,7 @@ $app->singleton(
 |
 */
 
+$app->register(RepositoryServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
