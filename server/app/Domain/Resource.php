@@ -43,7 +43,7 @@ class Resource
   }
 
   /**
-   * @return array
+   * @return Ingredient[]
    */
   public function getMadeOf(): array
   {

@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\ResourceRepositoryInterface;
+use App\Http\Controllers\View\ResourceList;
+use App\UseCases\GetAllResources;
 
 class ResourceController extends Controller
 {
-  private $repository;
+  private $getAllResources;
 
-  public function __construct(ResourceRepositoryInterface $resourceRepository)
+  public function __construct(GetAllResources $getAllResources)
   {
-    $this->repository = $resourceRepository;
+    $this->getAllResources = $getAllResources;
   }
 
   public function index()
   {
-    return response()->json($this->repository->getAllResources());
+    $resources = new ResourceList($this->getAllResources->execute());
+
+    return response()->json($resources->toArray());
   }
 }

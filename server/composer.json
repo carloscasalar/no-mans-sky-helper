@@ -29,7 +29,8 @@
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
         ],
-        "run": ["php -S 0.0.0.0:8000 -t public"]
+        "run": ["php -S 0.0.0.0:8000 -t public"],
+        "test": ["phpunit"]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

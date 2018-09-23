@@ -2,60 +2,47 @@
 
 namespace App\Persistence;
 
-
+use App\Domain\Ingredient;
 use App\Domain\Resource;
 use App\Domain\ResourceRepositoryInterface;
 
 class ResourceRepository implements ResourceRepositoryInterface
 {
+  private $readFromStore;
+
+  public function __construct(callable $readFromStore)
+  {
+    $this->readFromStore = $readFromStore;
+  }
 
   public function getAllResources(): array
   {
+    $readFromStore = $this->readFromStore;
+    $rawResources = $readFromStore();
+
     return array_map(
       function (array $resource) {
         return new Resource(
           $resource['_id'],
           $resource['name'],
           $resource['abbreviation'],
-          $resource['madeOf']
-          );
+          $this->toIngredients($resource['madeOf'])
+        );
       },
-      $this->getResources()
+      $rawResources
     );
   }
 
-  private function getResources(): array
+  private function toIngredients(array $ingredients): array
   {
-    return [
-      [
-        '_id' => 'cu',
-        'name' => 'Copper',
-        'abbreviation' => 'Cu',
-        'madeOf' => []
-      ],
-      [
-        '_id' => 'c',
-        'name' => 'Carbon',
-        'abbreviation' => 'C',
-        'madeOf' => []
-      ],
-      [
-        '_id' => 'fe',
-        'name' => 'Ferrite dust',
-        'abbreviation' => 'Fe',
-        'madeOf' => []
-      ],
-      [
-        '_id' => 'fe+',
-        'name' => 'Pure ferrite',
-        'abbreviation' => 'Fe+',
-        'madeOf' => [
-          [
-            'resource' => 'fe',
-            'amount' => 2
-          ]
-        ]
-      ]
-    ];
+    return array_map(
+      function (array $ingredient): Ingredient {
+        return new Ingredient(
+          $ingredient['amount'],
+          $ingredient['resource']
+        );
+      },
+      $ingredients
+    );
   }
 }
