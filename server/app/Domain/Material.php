@@ -3,7 +3,7 @@
 namespace App\Domain;
 
 
-class Resource
+class Material
 {
   private $id;
   private $name;

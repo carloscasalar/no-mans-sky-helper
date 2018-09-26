@@ -5,12 +5,12 @@ namespace App\Domain;
 class Ingredient
 {
   private $amount;
-  private $resourceId;
+  private $materialId;
 
-  public function __construct(int $amount, string $resourceId)
+  public function __construct(int $amount, string $materialId)
   {
     $this->amount = $amount;
-    $this->resourceId = $resourceId;
+    $this->materialId = $materialId;
   }
 
   /**
@@ -24,9 +24,9 @@ class Ingredient
   /**
    * @return string
    */
-  public function getResourceId(): string
+  public function getMaterialId(): string
   {
-    return $this->resourceId;
+    return $this->materialId;
   }
 
 }

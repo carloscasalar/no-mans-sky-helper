@@ -1,12 +1,10 @@
 <?php
 
 use App\Domain\Ingredient;
-use App\Domain\Resource;
-use App\Persistence\ResourceRepository;
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
+use App\Domain\Material;
+use App\Persistence\MaterialRepository;
 
-class ResourceRepositoryTest extends TestCase
+class MaterialRepositoryTest extends TestCase
 {
   const FERRITE_DUST_ID = 'fe';
   const FERRITE_DUST = 'Ferrite dust';
@@ -20,9 +18,9 @@ class ResourceRepositoryTest extends TestCase
   /**
    * @test
    */
-  public function getAllResources_should_return_an_array_with_all_resources_in_the_store()
+  public function getAllMaterials_should_return_an_array_with_all_materials_in_the_store()
   {
-    $rawResourcesResolverMock = function () {
+    $rawMaterialResolverMock = function () {
       return [
         [
           '_id' => self::FERRITE_DUST_ID,
@@ -36,7 +34,7 @@ class ResourceRepositoryTest extends TestCase
           'abbreviation' => self::PURE_FERRITE_ABBREVIATION,
           'madeOf' => [
             [
-              'resource' => self::FERRITE_DUST_ID,
+              'material' => self::FERRITE_DUST_ID,
               'amount' => self::AMOUNT_OF_TWO
             ]
           ]
@@ -44,11 +42,11 @@ class ResourceRepositoryTest extends TestCase
       ];
     };
 
-    $repository = new ResourceRepository($rawResourcesResolverMock);
+    $repository = new MaterialRepository($rawMaterialResolverMock);
 
-    $expectedResourcesCollection = [
-      new Resource(self::FERRITE_DUST_ID, self::FERRITE_DUST, self::FERRITE_DUST_ABBREVIATION, self::NO_INGREDIENTS),
-      new Resource(
+    $expectedMaterialsCollection = [
+      new Material(self::FERRITE_DUST_ID, self::FERRITE_DUST, self::FERRITE_DUST_ABBREVIATION, self::NO_INGREDIENTS),
+      new Material(
         self::PURE_FERRITE_ID,
         self::PURE_FERRITE,
         self::PURE_FERRITE_ABBREVIATION,
@@ -56,6 +54,6 @@ class ResourceRepositoryTest extends TestCase
       )
     ];
 
-    $this->assertEquals($expectedResourcesCollection, $repository->getAllResources());
+    $this->assertEquals($expectedMaterialsCollection, $repository->getAllMaterials());
   }
 }

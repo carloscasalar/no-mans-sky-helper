@@ -3,24 +3,24 @@
 namespace App\Http\Controllers\View;
 
 use App\Domain\Ingredient;
-use App\Domain\Resource;
+use App\Domain\Material;
 use Illuminate\Contracts\Support\Arrayable;
 
-class ResourceView implements Arrayable
+class MaterialView implements Arrayable
 {
-  private $resource;
+  private $material;
 
-  public function __construct(Resource $resource)
+  public function __construct(Material $material)
   {
-    $this->resource = $resource;
+    $this->material = $material;
   }
 
   public function toArray(): array
   {
     return [
-      'id' => $this->resource->getId(),
-      'abbreviation' => $this->resource->getAbbreviation(),
-      'name' => $this->resource->getName(),
+      'id' => $this->material->getId(),
+      'abbreviation' => $this->material->getAbbreviation(),
+      'name' => $this->material->getName(),
       'madeOf' => $this->ingredientsToArray()
     ];
   }
@@ -34,9 +34,9 @@ class ResourceView implements Arrayable
       function (Ingredient $made): array {
         return [
           'amount' => $made->getAmount(),
-          'resource' => $made->getResourceId()
+          'material' => $made->getMaterialId()
         ];
       },
-      $this->resource->getMadeOf());
+      $this->material->getMadeOf());
   }
 }

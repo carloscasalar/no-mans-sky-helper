@@ -2,15 +2,15 @@
 
 namespace App\Providers;
 
-use App\Domain\ResourceRepositoryInterface;
-use App\Persistence\ResourceRepository;
+use App\Domain\MaterialRepositoryInterface;
+use App\Persistence\MaterialRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
   public function register()
   {
-    $this->app->singleton(ResourceRepositoryInterface::class, function () {
+    $this->app->singleton(MaterialRepositoryInterface::class, function () {
 
       // TODO: remove this when repository reads from db
       $readFromStoreFunction = function () {
@@ -39,7 +39,7 @@ class RepositoryServiceProvider extends ServiceProvider
             'abbreviation' => 'Fe+',
             'madeOf' => [
               [
-                'resource' => 'fe',
+                'material' => 'fe',
                 'amount' => 2
               ]
             ]
@@ -47,7 +47,7 @@ class RepositoryServiceProvider extends ServiceProvider
         ];
       };
 
-      return new ResourceRepository($readFromStoreFunction);
+      return new MaterialRepository($readFromStoreFunction);
     });
   }
 }

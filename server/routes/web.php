@@ -15,4 +15,4 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/resources', 'ResourceController@index');
+$router->get('/materials', 'MaterialController@index');

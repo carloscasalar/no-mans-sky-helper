@@ -3,10 +3,10 @@
 namespace App\Persistence;
 
 use App\Domain\Ingredient;
-use App\Domain\Resource;
-use App\Domain\ResourceRepositoryInterface;
+use App\Domain\Material;
+use App\Domain\MaterialRepositoryInterface;
 
-class ResourceRepository implements ResourceRepositoryInterface
+class MaterialRepository implements MaterialRepositoryInterface
 {
   private $readFromStore;
 
@@ -15,21 +15,21 @@ class ResourceRepository implements ResourceRepositoryInterface
     $this->readFromStore = $readFromStore;
   }
 
-  public function getAllResources(): array
+  public function getAllMaterials(): array
   {
     $readFromStore = $this->readFromStore;
-    $rawResources = $readFromStore();
+    $rawMaterials = $readFromStore();
 
     return array_map(
       function (array $resource) {
-        return new Resource(
+        return new Material(
           $resource['_id'],
           $resource['name'],
           $resource['abbreviation'],
           $this->toIngredients($resource['madeOf'])
         );
       },
-      $rawResources
+      $rawMaterials
     );
   }
 
@@ -39,7 +39,7 @@ class ResourceRepository implements ResourceRepositoryInterface
       function (array $ingredient): Ingredient {
         return new Ingredient(
           $ingredient['amount'],
-          $ingredient['resource']
+          $ingredient['material']
         );
       },
       $ingredients
