@@ -26,7 +26,7 @@ class MaterialRepository implements MaterialRepositoryInterface
           $resource['_id'],
           $resource['name'],
           $resource['abbreviation'],
-          $this->toIngredients($resource['madeOf'])
+          $this->toIngredients($resource['ingredients'])
         );
       },
       $rawMaterials

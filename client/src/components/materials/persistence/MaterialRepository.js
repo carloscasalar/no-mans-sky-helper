@@ -1,43 +1,23 @@
 import MaterialRepositoryI from '../domain/MaterialRepositoryI';
-import Material from '../domain/Material';
+import MaterialAdapter from './MaterialAdapter';
 
-const getFakeListOfRawMaterials = () => new Promise((resolve) => {
-  const fiveSeconds = 5000;
-  setTimeout(() => {
-    resolve([
-      {
-        id: 'c',
-        name: 'Carbon',
-        abbreviation: 'C',
-      },
-      {
-        id: 'fe',
-        abbreviation: 'Fe',
-        name: 'Ferrite Dust',
-      },
-      {
-        id: 'fe+',
-        abbreviation: 'Fe+',
-        name: 'Pure Ferrite',
-        madeOf: [{
-          id: 'fe',
-          abbreviation: 'Fe',
-          name: 'Ferrite Dust',
-        }],
-      },
-    ]);
-  }, fiveSeconds);
-});
+const baseUrl = process.env.VUE_APP_BACKEND_URL_BASE;
 
 export default class MaterialRepository extends MaterialRepositoryI {
-// eslint-disable-next-line class-methods-use-this
   async getMaterials() {
     try {
-      const materials = await getFakeListOfRawMaterials();
-      return materials.map(material => new Material(material));
+      const response = await fetch(this.materialUrl);
+      const materialsData = await response.json();
+      const materialAdapter = new MaterialAdapter(materialsData);
+
+      return materialAdapter.adapt();
     } catch (e) {
       console.log('unexpected error retrieving material list', e);
       throw e;
     }
+  }
+  // eslint-disable-next-line class-methods-use-this
+  get materialUrl() {
+    return `${baseUrl}/materials`;
   }
 }

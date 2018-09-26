@@ -26,13 +26,13 @@ class MaterialRepositoryTest extends TestCase
           '_id' => self::FERRITE_DUST_ID,
           'name' => self::FERRITE_DUST,
           'abbreviation' => self::FERRITE_DUST_ABBREVIATION,
-          'madeOf' => []
+          'ingredients' => []
         ],
         [
           '_id' => self::PURE_FERRITE_ID,
           'name' => self::PURE_FERRITE,
           'abbreviation' => self::PURE_FERRITE_ABBREVIATION,
-          'madeOf' => [
+          'ingredients' => [
             [
               'material' => self::FERRITE_DUST_ID,
               'amount' => self::AMOUNT_OF_TWO

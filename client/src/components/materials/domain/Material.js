@@ -1,23 +1,25 @@
+import { ingredientNameExtractor } from './Ingredient';
+
 const COMMA = ', ';
 const EMPTY_STRING = '';
 
-const extractName = ({ name }) => name;
-
 export default class Material {
   constructor({
-    id, name, abbreviation, madeOf = [],
+    id, name, abbreviation, ingredients = [],
   }) {
     this.id = id;
     this.name = name;
     this.abbreviation = abbreviation;
-    this.madeOf = madeOf.map(extractName);
+    this.ingredients = ingredients;
   }
 
   get composed() {
-    return this.madeOf.length > 0;
+    return this.ingredients.length > 0;
   }
 
   get composition() {
-    return this.composed ? this.madeOf.join(COMMA) : EMPTY_STRING;
+    return this.composed ? this.ingredients
+      .map(ingredientNameExtractor)
+      .join(COMMA) : EMPTY_STRING;
   }
 }

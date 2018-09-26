@@ -21,7 +21,7 @@ class MaterialView implements Arrayable
       'id' => $this->material->getId(),
       'abbreviation' => $this->material->getAbbreviation(),
       'name' => $this->material->getName(),
-      'madeOf' => $this->ingredientsToArray()
+      'ingredients' => $this->ingredientsToArray()
     ];
   }
 

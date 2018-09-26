@@ -19,25 +19,25 @@ class RepositoryServiceProvider extends ServiceProvider
             '_id' => 'cu',
             'name' => 'Copper',
             'abbreviation' => 'Cu',
-            'madeOf' => []
+            'ingredients' => []
           ],
           [
             '_id' => 'c',
             'name' => 'Carbon',
             'abbreviation' => 'C',
-            'madeOf' => []
+            'ingredients' => []
           ],
           [
             '_id' => 'fe',
             'name' => 'Ferrite dust',
             'abbreviation' => 'Fe',
-            'madeOf' => []
+            'ingredients' => []
           ],
           [
             '_id' => 'fe+',
             'name' => 'Pure ferrite',
             'abbreviation' => 'Fe+',
-            'madeOf' => [
+            'ingredients' => [
               [
                 'material' => 'fe',
                 'amount' => 2
