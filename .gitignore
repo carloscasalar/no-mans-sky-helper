@@ -1,18 +1,4 @@
 .DS_Store
-node_modules
-/dist
-
-/tests/e2e/reports/
-selenium-debug.log
-
-# local env files
-.env.local
-.env.*.local
-
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Editor directories and files
 .idea
@@ -22,3 +8,10 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# File for local notes
+notes.txt
+
+# local cache ignored files and folder
+composer-home
+docker-files

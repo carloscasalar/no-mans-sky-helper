@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  mongo:
+    build: ./db
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME = admin
+      - MONGO_INITDB_ROOT_PASSWORD = admin
+      - MONGO_INITDB_DATABASE = nmsh
+    volumes:
+      - ./docker-files/mongo:/data/db
+      - ./docker-files/logs:/var/log/
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME = admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD = admin
+      - ME_MONGO_INITDB_DATABASE = nmsh
+    links:
+      - mongo
+    depends_on:
+      - mongo
