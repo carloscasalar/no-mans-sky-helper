@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\CatchAllOptionsRequestsProvider;
 use App\Providers\RepositoryServiceProvider;
 use App\Providers\UseCasesServiceProvider;
 
@@ -62,6 +63,10 @@ $app->singleton(
 |
 */
 
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
+
 // $app->middleware([
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
@@ -83,6 +88,7 @@ $app->singleton(
 
 $app->register(RepositoryServiceProvider::class);
 $app->register(UseCasesServiceProvider::class);
+$app->register(CatchAllOptionsRequestsProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
