@@ -5,4 +5,4 @@ export class Ingredient {
   }
 }
 
-export const ingredientNameExtractor = ({ material: name }) => name;
+export const ingredientNameExtractor = ({ material: { name } }) => name;

@@ -24,10 +24,11 @@ export default class MaterialAdapter {
         id,
         name,
         abbreviation,
-        madeOf,
+        ingredients: madeOf,
       }) => {
         const ingredients = madeOf
-          .map(({ amount, materialId }) => this.madeOfPropertyToIngredient({ amount, materialId }));
+          .map(({ amount, material: materialId }) =>
+            this.madeOfPropertyToIngredient({ amount, materialId }));
 
         return new Material({
           id, name, abbreviation, ingredients,
